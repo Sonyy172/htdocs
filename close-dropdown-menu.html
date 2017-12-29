@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery Hide Dropdown on Click Outside</title>
+<style type="text/css">
+    ul{
+        padding: 0;
+        list-style: none;
+        background: #f2f2f2;
+    }
+    ul li{
+        display: inline-block;
+        position: relative;
+        line-height: 21px;
+        text-align: left;
+    }
+    ul li a{
+        display: block;
+        padding: 8px 25px;
+        color: #333;
+        text-decoration: none;
+    }
+    ul li a:hover{
+        color: #fff;
+        background: #939393;
+    }
+    ul li ul.submenu{
+        min-width: 100%; /* Set width of the dropdown */
+        background: #f2f2f2;
+        display: none;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+    }
+    ul li ul.submenu li{
+        display: block;
+    }
+
+    .show-share-but {
+        background-image: -moz-element();
+    }
+
+    .hide-share-but {
+        background-image: -moz-linear-gradient();
+    }
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Show hide popover
+        $(".icon").click(function(){
+            // $(this).find(".submenu").slideToggle();
+            $(".submenu").addClass('show-share-but');
+
+        });
+    });
+    $(document).on("click", function(event){
+        var $trigger = $(".icon");
+        if($trigger !== event.target && !$trigger.has(event.target).length){
+            $(".submenu").addClass('hide-share-but');
+        }            
+    });
+</script>
+</head>
+<body>
+    <ul>
+        <li class="icon">
+            <a href="#">Products &#9662;</a>
+            <ul class="submenu">
+                <li><a href="#">Laptops</a></li>
+                <li><a href="#">Monitors</a></li>
+                <li><a href="#">Printers</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>                            
